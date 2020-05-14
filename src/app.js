@@ -1,11 +1,14 @@
 import Asteroide from "./Asteroide"; 
 import Ship from "./Ship"
+import Shot from "./Shot"
 import { controller } from "./controller";
+
 
 const animation = {
     canvasElt: undefined, 
     ctx: undefined, 
     asteroides: [], //? Tableau dans le quel on doit ajouter les asteroides (crée par le classe asteroide)
+    shots: [],
     nbAsteroides : 10, 
     controller,
     colors : ['#EC8900',  '#E7A700', '#5787AB' , '#E7A700'  ],
@@ -29,9 +32,14 @@ const animation = {
     },
 
     draw(){
-        this.asteroides.forEach(asteroide => (
+        this.asteroides.forEach(asteroide => {
             asteroide.update() 
-        ))
+        });
+        this.shots.forEach( shot => {
+            if(shot !== undefined){
+                shot.update();
+            }
+        })
         this.ship.update();
     },
 
