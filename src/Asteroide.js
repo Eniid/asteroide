@@ -14,6 +14,11 @@ export default class Asteroide {
         this.angle = this.angleDeg * (Math.PI/180)
         this.speed = Math.floor(Math.random()*2) == 1 ? 1 : -1;
         console.log(this.speed);
+
+
+        this.i = undefined; 
+        this.isAlive = true; 
+
     }
 
 
@@ -44,6 +49,10 @@ export default class Asteroide {
         if(this.x <= -15) { 
             this.x = this.canvas.width;
         }; 
+
+        if(this.isAlive === false){
+            this.animation.asteroides[this.i] = undefined; 
+        }    
 
     }
 }

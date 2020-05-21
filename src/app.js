@@ -25,7 +25,9 @@ const animation = {
             this.resize();
         }, false)
         for(let i = 0; i < this.nbAsteroides; i++){
-            this.asteroides.push(new Asteroide(this, this.colors));
+            const newAsteroide = new Asteroide(this, this.colors);
+            newAsteroide.i = i;
+            this.asteroides.push(newAsteroide);
         }
         this.ship = new Ship(this);
         this.animate(); 
@@ -33,7 +35,10 @@ const animation = {
 
     draw(){
         this.asteroides.forEach(asteroide => {
-            asteroide.update() 
+            if(asteroide !== undefined){
+                asteroide.update() 
+            }
+
         });
         this.shots.forEach( shot => {
             if(shot !== undefined){

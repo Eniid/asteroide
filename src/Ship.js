@@ -14,6 +14,7 @@ export default class Ship {
         this.shipAngle = 90; 
         this.delay = 20; 
         this.lastshot = 0; 
+
     }
     
 
