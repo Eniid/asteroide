@@ -4,6 +4,9 @@ export default class Shot {
         this.ctx = this.animation.ctx; 
         this.canvas = this.animation.canvasElt; 
         this.asteroides = this.animation.asteroides;
+        this.Asteroide = this.animation.Asteroide; 
+
+
         this.color = "#fff";
         this.raduis = 4; 
         this.x = 100; 
@@ -22,41 +25,8 @@ export default class Shot {
     draw(){
         this.ctx.beginPath()
         this.ctx.fillStyle = this.color
-export default class Bloc {
-    constructor(animation) {
-        this.animation = animation;
-        this.canvas = this.animation.canvasElt;
-        this.ctx = this.animation.ctx;
-        this.blocTable = this.animation.blocs; 
-
-        this.i = this.blocTable.length;
-
-        this.color = "#ebd0bf";
-        this.widht = 104;
-        this.height = 40;
-        this.margin = 25;
-
-        this.x = this.margin + Math.floor(this.i % 6) * (this.widht + this.margin);
-        this.y = this.margin + Math.floor(this.i / 6) * (this.height + this.margin);
-
-    }
-
-
-    draw(){         
-        this.ctx.beginPath()
-        this.ctx.fillStyle = this.color
-        this.ctx.arc(this.x, this.y, this.raduis, 0, Math.PI*2)
-        this.ctx.fill();
-    }; 
-
-    update(){
-
-        //if(i < 5) {
-          //  this.x = this.i * (1 +150);
-        //}
-        this.draw();
-    }
-}        this.ctx.fill()
+        this.ctx.arc(this.x, this.y, this.raduis, 0, Math.PI*2);
+        this.ctx.fill()
     }
 
     boum(){
@@ -67,6 +37,25 @@ export default class Bloc {
                 const c = Math.sqrt((a*a) + (b*b));
                 
                 if (this.raduis + asteroide.raduis > c){
+                    if (asteroide.raduis > 20){
+                        const newAsteroide = new this.Asteroide(this.animation, this.animation.colors);
+                        newAsteroide.raduis = 10 + Math.round(Math.random()*10);
+                        newAsteroide.x = asteroide.x;
+                        newAsteroide.y = asteroide.y;
+                        newAsteroide.speed = asteroide.speed*2.2;
+                        newAsteroide.angle = asteroide.angle;
+                        newAsteroide.color = asteroide.color;
+                        this.asteroides.push(newAsteroide);
+
+                        const newAsteroideDeux = new this.Asteroide(this.animation, this.animation.colors);
+                        newAsteroideDeux.raduis = 10 + Math.round(Math.random()*10);
+                        newAsteroideDeux.x = asteroide.x;
+                        newAsteroideDeux.y = asteroide.y;
+                        newAsteroideDeux.speed = -asteroide.speed*2.2;
+                        newAsteroideDeux.angle = asteroide.angle;
+                        newAsteroideDeux.color = asteroide.color;
+                        this.asteroides.push(newAsteroideDeux);
+                    }
                     asteroide.isAlive = false;
                     this.isAlive = false; 
                 }

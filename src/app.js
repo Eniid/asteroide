@@ -11,8 +11,8 @@ const animation = {
     shots: [],
     nbAsteroides : 10, 
     controller,
+    Asteroide, 
     colors : ['#EC8900',  '#E7A700', '#5787AB' , '#E7A700'  ],
-    //ship : new Ship(this),
 
     //* Toutes les propoiétées !! 
     init(){
@@ -24,12 +24,12 @@ const animation = {
         window.addEventListener('resize', e => {
             this.resize();
         }, false)
+        this.ship = new Ship(this);
         for(let i = 0; i < this.nbAsteroides; i++){
-            const newAsteroide = new Asteroide(this, this.colors);
+            const newAsteroide = new this.Asteroide(this, this.colors);
             newAsteroide.i = i;
             this.asteroides.push(newAsteroide);
         }
-        this.ship = new Ship(this);
         this.animate(); 
     },
 

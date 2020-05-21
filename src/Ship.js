@@ -9,6 +9,7 @@ export default class Ship {
         this.shipW = 10; 
         this.shipH = 30;
         this.shipSpeed = 0;
+        this.shipMawSpeed = 1;
         this.shipPosX =  this.canvas.width/2;
         this.shipPosY = this.canvas.height/2;
         this.shipAngle = 90; 
@@ -56,10 +57,10 @@ export default class Ship {
 
     update(){
         if(this.animation.controller.isKeyDown("z")){
-            this.shipSpeed = -1; 
+            this.shipSpeed = -this.shipMawSpeed; 
         }
         if(this.animation.controller.isKeyDown("s")){
-            this.shipSpeed = 1; 
+            this.shipSpeed = this.shipMawSpeed; 
         }
         if(this.animation.controller.isKeyDown("d")){
             this.shipAngle++;

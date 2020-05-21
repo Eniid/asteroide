@@ -4,6 +4,8 @@ export default class Asteroide {
         this.animation = animation;
         this.canvas = this.animation.canvasElt;
         this.ctx = this.animation.ctx
+        this.ship = this.animation.ship; 
+
         this.raduis = 10 + Math.round(Math.random()*30);
         this.possiblepixelsW = this.canvas.width - this.raduis
         this.possiblepixelsH = this.canvas.height - 2* this.raduis
@@ -16,7 +18,7 @@ export default class Asteroide {
         console.log(this.speed);
 
 
-        this.i = undefined; 
+        this.i = this.animation.asteroides.length; 
         this.isAlive = true; 
 
     }
@@ -28,6 +30,18 @@ export default class Asteroide {
         this.ctx.arc(this.x, this.y, this.raduis, 0, Math.PI*2)
         this.ctx.fill();
     }; 
+
+    boum(){
+        const a = this.x - this.ship.shipPosX ; 
+        const b = this.y - this.ship.shipPosY;
+        const c = Math.sqrt((a*a) + (b*b));
+        
+
+        if (this.raduis + this.ship.shipH/2 > c){
+            this.ship.shipMaxSpeed = 0;
+            console.log(c);
+        }
+    }
 
     update(){
         this.x += this.speed * Math.cos(this.angle)
@@ -53,6 +67,6 @@ export default class Asteroide {
         if(this.isAlive === false){
             this.animation.asteroides[this.i] = undefined; 
         }    
-
+        this.boum();
     }
 }
