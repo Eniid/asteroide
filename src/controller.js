@@ -5,6 +5,8 @@ export const controller = {
         this.animation = animation;
         console.log("hello")
         window.addEventListener("keydown", e=>{
+            e.preventDefault()
+            e.stopPropagation()
             const key = e.key;
             if(this.allowedKeys.indexOf(key) != -1){
                 if(this.pressedKeys.indexOf(key) == -1){
@@ -14,6 +16,8 @@ export const controller = {
             console.log(this.pressedKeys)
         }, false);
         window.addEventListener("keyup", e=>{
+            e.preventDefault()
+            e.stopPropagation()
             const key = e.key;
             if(this.pressedKeys.indexOf(key) != -1){
                 this.pressedKeys.splice(this.pressedKeys.indexOf(key), 1);

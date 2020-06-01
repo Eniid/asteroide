@@ -45,7 +45,16 @@ const animation = {
                 shot.update();
             }
         })
-        this.ship.update();
+
+        if(this.ship.shipMaxSpeed !== 0){
+            this.ship.update();
+        } else {
+            this.ctx.font = "30px Arial"
+            this.ctx.fillStyle = "#fff"
+            this.ctx.textAlign = "center"
+            this.ctx.fillText("Vous avez perdu..", this.canvasElt.width/2, this.canvasElt.height/2)
+        }
+
     },
 
     animate(){ //¨* Pour quand on va faire bouger le truc 
